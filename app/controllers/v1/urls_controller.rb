@@ -1,7 +1,8 @@
 class V1::UrlsController < V1::BaseController
   def create
-    url = UrlShorterService.call(url_params)
-    respond_with url, location: v1_url_path(url)
+    url = Url.find_or_create_by(url_params)
+    json = V1::ShortUrlSerializer.new(url).serialized_json
+    respond_with json, location: v1_url_path(url)
   end
 
 

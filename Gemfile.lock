@@ -73,6 +73,8 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffaker (2.17.0)
     ffi (1.13.1)
     globalid (0.4.2)
@@ -211,6 +213,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   factory_bot_rails
+  fast_jsonapi
   ffaker
   listen (~> 3.2)
   pg

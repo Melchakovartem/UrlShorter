@@ -18,11 +18,25 @@ describe 'Urls API', type: :request do
         },
         required: [ 'long' ]
       }
+      
+      let(:json) { JSON.parse(response.body) }
 
       response '201', 'created short ulr' do
         let!(:long) { '/users/1/posts/1' }
         let(:params) { { url: { long: long} } }
-        let(:json) { JSON.parse(response.body) }
+
+        run_test!
+      end
+
+      response '201', 'url existed' do
+        let!(:long) { '/users/1/posts/1' }
+        let!(:existed_url) { create(:url, long: long) }
+        let(:params) { { url: { long: long} } }
+
+        it 'returns existed url' do
+          existed_short_url = "/v1/urls/#{existed_url.short}"
+          expect(json['data']['attributes']['short_url']).to eq(existed_short_url)
+        end
 
         run_test!
       end

@@ -11,6 +11,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'pg'
 gem 'responders'
 gem 'versionist'
+gem 'fast_jsonapi'
 
 gem 'rswag'
 
@@ -18,6 +19,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'pry'
+  gem 'factory_bot_rails'
 end
 
 group :development do
