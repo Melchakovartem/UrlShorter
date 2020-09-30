@@ -3,6 +3,11 @@ class Url < ApplicationRecord
 
   before_create :set_short_url
 
+  def change_count_by_one
+    self.match += 1
+    self.save
+  end
+
   private
 
   def set_short_url

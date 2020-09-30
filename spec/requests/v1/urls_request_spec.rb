@@ -42,4 +42,35 @@ describe 'Urls API', type: :request do
       end
     end
   end
+
+  path '/v1/urls/{short}' do
+    get 'Create short url' do
+      tags 'URL'
+      consumes 'application/json'
+      
+      parameter name: :short,
+        description: 'Short url',
+        in: :path,
+        type: :string,
+        required: true
+
+      let(:json) { JSON.parse(response.body) }
+
+      response '200', 'returned long url' do
+        let(:long) { '/users/1/posts/1' }
+        let!(:url) { create(:url, long: long) }
+        let(:short) { url.short }
+
+        it 'returns long url' do
+          expect(json['data']['attributes']['long_url']).to eq(url.long)
+        end
+
+        it 'changes count of matches' do
+          expect(url.reload.match).to eq(1)
+        end
+
+        run_test!
+      end
+    end
+  end
 end
