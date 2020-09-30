@@ -13,6 +13,11 @@ class V1::UrlsController < V1::BaseController
     respond_with json
   end
 
+  def stats
+    json = V1::StatsUrlSerializer.new(@url).serialized_json
+    respond_with json
+  end
+
 
   private
 
@@ -21,6 +26,7 @@ class V1::UrlsController < V1::BaseController
   end
 
   def load_url
-    @url = Url.find_by(short: params[:short])
+    short = params[:short] || params[:url_short]
+    @url = Url.find_by(short: short)
   end
 end
