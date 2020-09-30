@@ -5,7 +5,7 @@ class Url < ApplicationRecord
 
   def change_count_by_one
     self.match += 1
-    self.save
+    save
   end
 
   private

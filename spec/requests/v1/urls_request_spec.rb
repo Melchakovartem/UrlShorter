@@ -16,14 +16,14 @@ describe 'Urls API', type: :request do
             }
           }
         },
-        required: [ 'long' ]
+        required: ['long']
       }
-      
+
       let(:json) { JSON.parse(response.body) }
 
       response '201', 'created short ulr' do
         let!(:long) { '/users/1/posts/1' }
-        let(:params) { { url: { long: long} } }
+        let(:params) { { url: { long: long } } }
 
         run_test!
       end
@@ -31,7 +31,7 @@ describe 'Urls API', type: :request do
       response '201', 'url existed' do
         let!(:long) { '/users/1/posts/1' }
         let!(:existed_url) { create(:url, long: long) }
-        let(:params) { { url: { long: long} } }
+        let(:params) { { url: { long: long } } }
 
         it 'returns existed url' do
           existed_short_url = "/v1/urls/#{existed_url.short}"
@@ -47,12 +47,12 @@ describe 'Urls API', type: :request do
     get 'Show long url' do
       tags 'URL'
       consumes 'application/json'
-      
+
       parameter name: :short,
-        description: 'Short url',
-        in: :path,
-        type: :string,
-        required: true
+                description: 'Short url',
+                in: :path,
+                type: :string,
+                required: true
 
       let(:json) { JSON.parse(response.body) }
 
@@ -78,12 +78,12 @@ describe 'Urls API', type: :request do
     get 'Show stats by url' do
       tags 'URL'
       consumes 'application/json'
-      
+
       parameter name: :short,
-        description: 'Short url',
-        in: :path,
-        type: :string,
-        required: true
+                description: 'Short url',
+                in: :path,
+                type: :string,
+                required: true
 
       let(:json) { JSON.parse(response.body) }
 

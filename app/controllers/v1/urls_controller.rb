@@ -18,7 +18,6 @@ class V1::UrlsController < V1::BaseController
     respond_with json
   end
 
-
   private
 
   def url_params
