@@ -12,6 +12,8 @@ gem 'pg'
 gem 'responders'
 gem 'versionist'
 
+gem 'rswag'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
@@ -25,4 +27,6 @@ group :development do
 end
 
 group :test do
+  gem 'factory_bot_rails'
+  gem 'ffaker'
 end
