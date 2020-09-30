@@ -1,0 +1,66 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/v1/urls":
+    post:
+      summary: Create short url
+      tags:
+      - URL
+      parameters: []
+      responses:
+        '201':
+          description: url existed
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: object
+                  properties:
+                    long:
+                      type: string
+              required:
+              - long
+  "/v1/urls/{short}":
+    get:
+      summary: Show long url
+      tags:
+      - URL
+      parameters:
+      - name: short
+        description: Short url
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: returned long url
+          content: {}
+  "/v1/urls/{short}/stats":
+    get:
+      summary: Show stats by url
+      tags:
+      - URL
+      parameters:
+      - name: short
+        description: Short url
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: returned long url
+          content: {}
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
